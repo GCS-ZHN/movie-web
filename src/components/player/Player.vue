@@ -30,6 +30,9 @@ export default class extends Vue {
                     controls: true,
                     autoplay: true,
                     preload: 'auto',
+                    muted: true,
+                    language: "zh-CN",
+                    fluid: true,
                     sources: [{
                         src: src,
                         type: type
