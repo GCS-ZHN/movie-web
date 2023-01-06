@@ -25,7 +25,7 @@
                         </el-icon>
                         <a  
                             v-if = "scope.row.type == 'file'" 
-                            v-bind:href="'player.html?target=' + backend + '/static/' + directorys.slice(1).join('') + scope.row.name" 
+                            v-bind:href="'player.html?target=' + backend + '/stream/' + directorys.slice(1).join('') + scope.row.name" 
                             target="_blank">
                                 {{ scope.row.name }}
                         </a>
