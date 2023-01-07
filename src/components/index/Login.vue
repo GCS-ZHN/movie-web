@@ -38,7 +38,7 @@ export default class extends Vue {
             }
         ).then(res=>{
             if (res.data.status == "0") {
-                window.location.href = "/home.html";
+                window.location.href = this.backend + "/home.html";
             } else {
                 ElMessage.error(res.data.message);
             }
@@ -49,15 +49,20 @@ export default class extends Vue {
     }
     mounted(){
         this.backend = getCurrentInstance()?.appContext.config.globalProperties.$backend;
-        axios.get(this.backend + '/key').then(res=>{
+        axios.get(this.backend + '/preauth').then(res=>{
             if (res.data.status == "0") {
-                this.encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + res.data.message + '-----END PUBLIC KEY-----');
+                switch (res.data.backend) {
+                    case "baidupan": window.location.href = res.data.auth_url; break;
+                    case "local": this.encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + res.data.message + '-----END PUBLIC KEY-----'); break;
+                    default: ElMessage.error("未知的后端类型"); break;
+                }
+                
             } else if (res.data.status == "1") {
                 window.location.href = "/home.html";
             }
         }).catch(err=>{
             console.log(err);
-            ElMessage.error("拉取公钥异常");
+            ElMessage.error("拉取预验证异常");
         })
     }
 }
