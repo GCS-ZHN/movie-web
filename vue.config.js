@@ -14,7 +14,7 @@ module.exports = defineConfig({
     },
     player: {
       entry: 'src/pages/player/main.ts',
-      template: 'public/index.html',
+      template: 'public/player.html',
       filename: 'player.html'
     }
   }
