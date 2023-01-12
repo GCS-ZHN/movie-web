@@ -17,5 +17,6 @@ module.exports = defineConfig({
       template: 'public/player.html',
       filename: 'player.html'
     }
-  }
+  },
+  publicPath: './'
 })
