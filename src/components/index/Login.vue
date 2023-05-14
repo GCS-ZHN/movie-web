@@ -58,7 +58,7 @@ export default class extends Vue {
                 }
                 
             } else if (res.data.status == "1") {
-                window.location.href = "/home.html";
+                window.location.href = this.backend + "/home.html";
             }
         }).catch(err=>{
             console.log(err);
